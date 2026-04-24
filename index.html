@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>瓯葉划词日语注音 - 日语网页阅读辅助浏览器扩展</title>
+    <meta
+      name="description"
+      content="瓯葉划词日语注音是一款面向中文用户的日语网页阅读辅助浏览器扩展。划词即可显示假名注音、朗读、翻译和收藏，并可将网页导出为带注音的学习材料。"
+    />
+    <meta name="theme-color" content="#f7f8f3" />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #20302c;
+        --muted: #65736f;
+        --soft: #edf2eb;
+        --paper: #fbfbf7;
+        --line: #dce5dc;
+        --leaf: #2f7a61;
+        --leaf-dark: #1f5f4a;
+        --gold: #c48a2c;
+        --coral: #d76552;
+        --aqua: #3c8a95;
+        --white: #ffffff;
+        --shadow: 0 24px 70px rgba(35, 55, 49, 0.13);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+          sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+        line-height: 1.65;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid rgba(220, 229, 220, 0.82);
+        background: rgba(251, 251, 247, 0.88);
+        backdrop-filter: blur(18px);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 72px;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 750;
+        letter-spacing: 0;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 40px;
+        height: 40px;
+        place-items: center;
+        border: 1px solid #cfded4;
+        border-radius: 12px;
+        background: #f4f8ef;
+        color: var(--leaf-dark);
+        font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+        font-size: 19px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 18px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .button.primary {
+        color: #ffffff;
+        background: var(--leaf);
+        box-shadow: 0 12px 26px rgba(47, 122, 97, 0.22);
+      }
+
+      .button.secondary {
+        color: var(--leaf-dark);
+        background: rgba(255, 255, 255, 0.76);
+        border-color: #cbded4;
+      }
+
+      .hero {
+        position: relative;
+        min-height: calc(100vh - 72px);
+        padding: 72px 0 34px;
+        overflow: hidden;
+        background:
+          linear-gradient(90deg, rgba(251, 251, 247, 0.98) 0%, rgba(251, 251, 247, 0.88) 45%, rgba(251, 251, 247, 0.22) 100%),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='980' viewBox='0 0 1600 980'%3E%3Crect width='1600' height='980' fill='%23edf2eb'/%3E%3Cg opacity='.55' font-family='Hiragino Mincho ProN, Yu Mincho, serif' fill='%232f7a61'%3E%3Ctext x='1060' y='172' font-size='86'%3E読書%3C/text%3E%3Ctext x='1190' y='322' font-size='54'%3E漢字%3C/text%3E%3Ctext x='1002' y='458' font-size='68'%3Eふりがな%3C/text%3E%3Ctext x='1270' y='584' font-size='48'%3E学習%3C/text%3E%3C/g%3E%3Cg fill='none' stroke='%23b7cabd' stroke-width='2'%3E%3Cpath d='M1000 240c130-90 270-84 410 18'/%3E%3Cpath d='M940 602c160 84 330 70 510-42'/%3E%3C/g%3E%3Cg transform='translate(885 178)'%3E%3Crect x='0' y='0' width='520' height='650' rx='28' fill='%23ffffff' opacity='.84'/%3E%3Crect x='38' y='48' width='312' height='24' rx='12' fill='%23cfded4'/%3E%3Crect x='38' y='104' width='438' height='16' rx='8' fill='%23e1e8df'/%3E%3Crect x='38' y='140' width='390' height='16' rx='8' fill='%23e1e8df'/%3E%3Crect x='38' y='176' width='430' height='16' rx='8' fill='%23e1e8df'/%3E%3Crect x='54' y='250' width='150' height='68' rx='18' fill='%23f7f8f3' stroke='%23cfded4'/%3E%3Ctext x='72' y='278' font-size='13' fill='%2365736f'%3Eかんじ%3C/text%3E%3Ctext x='72' y='303' font-size='26' fill='%2320302c'%3E漢字%3C/text%3E%3Crect x='224' y='250' width='230' height='68' rx='18' fill='%23fff6e6' stroke='%23ecd4aa'/%3E%3Ctext x='246' y='292' font-size='20' fill='%23a86d19'%3E朗读 · 翻译 · 收藏%3C/text%3E%3Crect x='38' y='390' width='438' height='180' rx='22' fill='%23f7faf5' stroke='%23dce5dc'/%3E%3Ctext x='66' y='444' font-size='20' fill='%2320302c'%3E今日の文章を、注音阅读稿へ。%3C/text%3E%3Crect x='66' y='482' width='340' height='14' rx='7' fill='%23dfe8de'/%3E%3Crect x='66' y='516' width='280' height='14' rx='7' fill='%23dfe8de'/%3E%3C/g%3E%3C/svg%3E");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.96fr) minmax(360px, 0.82fr);
+        gap: 44px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--leaf-dark);
+        font-size: 14px;
+        font-weight: 750;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: var(--gold);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 720px;
+        margin-bottom: 22px;
+        font-size: clamp(42px, 6.4vw, 76px);
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+
+      .hero-copy {
+        max-width: 680px;
+        color: #4f625c;
+        font-size: clamp(17px, 1.6vw, 21px);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin: 34px 0 28px;
+      }
+
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        color: #536862;
+        font-size: 14px;
+      }
+
+      .hero-tags span {
+        padding: 7px 12px;
+        border: 1px solid #d5e1d7;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.58);
+      }
+
+      .product-panel {
+        position: relative;
+        width: min(100%, 470px);
+        margin-left: auto;
+        padding: 18px;
+        border: 1px solid rgba(207, 222, 212, 0.82);
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+      }
+
+      .browser-bar {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        height: 30px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #d8ded8;
+      }
+
+      .reader-card {
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: #ffffff;
+      }
+
+      .jp-line {
+        margin-bottom: 16px;
+        font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+        font-size: 25px;
+        line-height: 2.1;
+      }
+
+      ruby {
+        ruby-position: over;
+      }
+
+      rt {
+        color: var(--leaf);
+        font-size: 0.46em;
+        font-weight: 700;
+      }
+
+      .selection {
+        padding: 3px 8px;
+        border-radius: 8px;
+        background: #fff1ca;
+        box-decoration-break: clone;
+      }
+
+      .mini-tools {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .mini-tools span {
+        display: grid;
+        min-height: 54px;
+        place-items: center;
+        border: 1px solid #dde7dd;
+        border-radius: 14px;
+        color: #506760;
+        background: #f9fbf7;
+        font-size: 13px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .floating-note {
+        position: absolute;
+        right: -8px;
+        bottom: -24px;
+        max-width: 230px;
+        padding: 16px 18px;
+        border: 1px solid #edd8b4;
+        border-radius: 18px;
+        background: #fffaf0;
+        color: #755221;
+        box-shadow: 0 18px 40px rgba(129, 88, 27, 0.16);
+        font-size: 14px;
+      }
+
+      section {
+        padding: 82px 0;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.78fr) minmax(260px, 0.58fr);
+        gap: 40px;
+        align-items: end;
+        margin-bottom: 34px;
+      }
+
+      .section-head h2 {
+        margin-bottom: 0;
+        font-size: clamp(30px, 4vw, 48px);
+        line-height: 1.15;
+        letter-spacing: 0;
+      }
+
+      .section-head p {
+        margin-bottom: 4px;
+        color: var(--muted);
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        min-height: 220px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #ffffff;
+        box-shadow: 0 16px 34px rgba(41, 64, 57, 0.06);
+      }
+
+      .icon {
+        display: grid;
+        width: 44px;
+        height: 44px;
+        margin-bottom: 18px;
+        place-items: center;
+        border-radius: 14px;
+        color: #ffffff;
+        background: var(--leaf);
+        font-weight: 850;
+      }
+
+      .card:nth-child(2) .icon,
+      .detail:nth-child(2) .icon {
+        background: var(--aqua);
+      }
+
+      .card:nth-child(3) .icon,
+      .detail:nth-child(3) .icon {
+        background: var(--gold);
+      }
+
+      .card:nth-child(4) .icon,
+      .detail:nth-child(4) .icon {
+        background: var(--coral);
+      }
+
+      .card h3,
+      .detail h3 {
+        margin-bottom: 10px;
+        font-size: 20px;
+        line-height: 1.3;
+      }
+
+      .card p,
+      .detail p,
+      .step p,
+      .trust p,
+      .quote p {
+        color: var(--muted);
+      }
+
+      .flow {
+        background: #eef3ec;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0;
+        border: 1px solid #d3dfd5;
+        background: #ffffff;
+      }
+
+      .step {
+        min-height: 230px;
+        padding: 26px;
+        border-right: 1px solid #d3dfd5;
+      }
+
+      .step:last-child {
+        border-right: 0;
+      }
+
+      .step-number {
+        margin-bottom: 28px;
+        color: var(--leaf);
+        font-size: 13px;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .details {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .detail {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        gap: 18px;
+        padding: 26px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #ffffff;
+      }
+
+      .trust-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(280px, 0.58fr);
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .trust,
+      .quote {
+        padding: 30px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #ffffff;
+      }
+
+      .trust-list {
+        display: grid;
+        gap: 12px;
+        margin: 22px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .trust-list li {
+        display: flex;
+        gap: 10px;
+        color: #4f625c;
+      }
+
+      .trust-list li::before {
+        content: "✓";
+        color: var(--leaf);
+        font-weight: 850;
+      }
+
+      .privacy {
+        background: #25332f;
+        color: #f6faf2;
+      }
+
+      .privacy .section-head p,
+      .privacy .quote p {
+        color: #cdd9d2;
+      }
+
+      .privacy-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .privacy-item {
+        min-height: 190px;
+        padding: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .privacy-item p {
+        color: #cdd9d2;
+      }
+
+      .slogans {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .slogans span {
+        padding: 10px 14px;
+        border: 1px solid #dce5dc;
+        border-radius: 999px;
+        background: #ffffff;
+        color: #526861;
+        font-weight: 700;
+      }
+
+      .cta {
+        padding: 86px 0 94px;
+        text-align: center;
+        background: #f6f8f1;
+      }
+
+      .cta h2 {
+        max-width: 760px;
+        margin: 0 auto 18px;
+        font-size: clamp(32px, 5vw, 56px);
+        line-height: 1.12;
+      }
+
+      .cta p {
+        max-width: 700px;
+        margin: 0 auto 28px;
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .site-footer {
+        padding: 28px 0;
+        border-top: 1px solid var(--line);
+        color: #72807b;
+        font-size: 14px;
+      }
+
+      .footer-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      @media (max-width: 920px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero {
+          min-height: auto;
+          padding-top: 54px;
+        }
+
+        .hero-grid,
+        .section-head,
+        .trust-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .product-panel {
+          margin: 18px auto 0;
+        }
+
+        .cards,
+        .steps,
+        .privacy-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .step:nth-child(2) {
+          border-right: 0;
+        }
+
+        .step:nth-child(-n + 2) {
+          border-bottom: 1px solid #d3dfd5;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .shell {
+          width: min(100% - 28px, 1120px);
+        }
+
+        .nav {
+          min-height: 64px;
+        }
+
+        .brand span:last-child {
+          max-width: 184px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .hero {
+          padding: 42px 0 30px;
+          background-position: 58% center;
+        }
+
+        .hero-actions {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        .product-panel {
+          padding: 12px;
+          border-radius: 22px;
+        }
+
+        .reader-card {
+          padding: 16px;
+        }
+
+        .jp-line {
+          font-size: 21px;
+        }
+
+        .floating-note {
+          position: static;
+          max-width: none;
+          margin-top: 12px;
+        }
+
+        section {
+          padding: 60px 0;
+        }
+
+        .cards,
+        .steps,
+        .details,
+        .privacy-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .step {
+          border-right: 0;
+          border-bottom: 1px solid #d3dfd5;
+        }
+
+        .step:last-child {
+          border-bottom: 0;
+        }
+
+        .detail {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-row {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="shell nav">
+        <a class="brand" href="#top" aria-label="瓯葉划词日语注音首页">
+          <span class="brand-mark">葉</span>
+          <span>瓯葉划词日语注音</span>
+        </a>
+        <nav class="nav-links" aria-label="主导航">
+          <a href="#features">核心</a>
+          <a href="#workflow">使用流程</a>
+          <a href="#details">功能详情</a>
+          <a href="#privacy">隐私</a>
+        </nav>
+        <a class="button primary" href="#install">安装扩展</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="shell hero-grid">
+          <div>
+            <p class="eyebrow">面向中文用户的日语网页阅读辅助扩展</p>
+            <h1 id="hero-title">读日语网页，不再被汉字读音卡住</h1>
+            <p class="hero-copy">
+              瓯葉划词日语注音是一款浏览器扩展。选中网页中的日语单词或句子，即刻显示假名注音、朗读、翻译与收藏，让真实日语内容变成可持续学习的材料。
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#install">安装扩展</a>
+              <a class="button secondary" href="#features">查看功能</a>
+            </div>
+            <div class="hero-tags" aria-label="适合人群">
+              <span>日语初中级学习者</span>
+              <span>日本网页阅读</span>
+              <span>精读打印材料</span>
+              <span>生词发音复习</span>
+            </div>
+          </div>
+
+          <div class="product-panel" aria-label="注音卡片界面示意">
+            <div class="browser-bar" aria-hidden="true">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="reader-card">
+              <p class="jp-line">
+                <span class="selection">
+                  <ruby>資料<rt>しりょう</rt></ruby>を<ruby>読<rt>よ</rt></ruby>みながら、
+                  <ruby>新<rt>あたら</rt></ruby>しい<ruby>言葉<rt>ことば</rt></ruby>を<ruby>覚<rt>おぼ</rt></ruby>える。
+                </span>
+              </p>
+              <div class="mini-tools">
+                <span>假名注音</span>
+                <span>日语朗读</span>
+                <span>翻译跳转</span>
+                <span>加入 Inbox</span>
+              </div>
+            </div>
+            <div class="floating-note">
+              当前网页可以整理成带注音的阅读稿，编辑后导出 PDF 或直接打印。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features">
+        <div class="shell">
+          <div class="section-head">
+            <h2>从查词工具，变成连续阅读的伙伴</h2>
+            <p>
+              不必在网页、词典、翻译和笔记之间来回切换。选中文本后，读音、声音、释义入口和复习记录都在当前阅读场景里完成。
+            </p>
+          </div>
+          <div class="cards">
+            <article class="card">
+              <div class="icon">あ</div>
+              <h3>划词即出假名</h3>
+              <p>选中日语单词或句子后，自动弹出注音卡片。短词显示为词卡，长文本显示为更适合阅读的句子注音面板。</p>
+            </article>
+            <article class="card">
+              <div class="icon">声</div>
+              <h3>听读同步</h3>
+              <p>在注音卡片中一键朗读，支持音量、语速和划词后自动播放，把读音、语感和文字自然对应起来。</p>
+            </article>
+            <article class="card">
+              <div class="icon">In</div>
+              <h3>生词进入 Inbox</h3>
+              <p>把不熟悉的词收藏到学习 Inbox，保留网页来源、上下文和注音，之后集中复习，不让生词散落在各处。</p>
+            </article>
+            <article class="card">
+              <div class="icon">PDF</div>
+              <h3>网页导出为注音阅读稿</h3>
+              <p>提取当前网页中的日文正文，在后台编辑段落、修正注音、排除无关内容，并导出为 PDF 或打印。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow" class="flow">
+        <div class="shell">
+          <div class="section-head">
+            <h2>把真实网页变成你的学习流程</h2>
+            <p>从第一次划词到后续复习，瓯葉把阅读中断点收拢成清晰的四步。</p>
+          </div>
+          <div class="steps">
+            <article class="step">
+              <div class="step-number">Step 01</div>
+              <h3>在日语网页中选中文本</h3>
+              <p>新闻、博客、资料、小说片段都可以直接阅读，无需先复制到单独工具。</p>
+            </article>
+            <article class="step">
+              <div class="step-number">Step 02</div>
+              <h3>查看注音、朗读或翻译</h3>
+              <p>遇到卡住的读音，先用假名和朗读确认，再按需要跳转到 Google、DeepL、Bing 或 Papago。</p>
+            </article>
+            <article class="step">
+              <div class="step-number">Step 03</div>
+              <h3>收藏难词，之后集中复习</h3>
+              <p>把临时不想深查的词放进 Inbox，保留原文语境，让复习不脱离真实阅读材料。</p>
+            </article>
+            <article class="step">
+              <div class="step-number">Step 04</div>
+              <h3>导出可打印的注音稿</h3>
+              <p>将整页文章整理成可编辑的带注音阅读稿，适合精读、课堂材料和离线复习。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="details">
+        <div class="shell">
+          <div class="section-head">
+            <h2>为网页阅读设计的完整功能</h2>
+            <p>瓯葉关注的是阅读过程本身：看懂当前句子，留下重要词条，整理需要精读的网页内容。</p>
+          </div>
+          <div class="details">
+            <article class="detail">
+              <div class="icon">詞</div>
+              <div>
+                <h3>注音卡片</h3>
+                <p>支持智能注音与全文注音模式。智能模式尽量只在需要的位置显示假名，降低视觉负担；全文显示模式更适合初学者和逐字精读。</p>
+              </div>
+            </article>
+            <article class="detail">
+              <div class="icon">練</div>
+              <div>
+                <h3>收藏与复习</h3>
+                <p>收藏词条进入待办 Inbox，并可进入读音拼写练习。通过假名块选择完成读音回忆，掌握后清理词条。</p>
+              </div>
+            </article>
+            <article class="detail">
+              <div class="icon">稿</div>
+              <div>
+                <h3>导出工作台</h3>
+                <p>管理当前网页的日文正文，编辑段落、调整段落类型、修正注音、排除不需要的内容，生成适合打印的阅读稿。</p>
+              </div>
+            </article>
+            <article class="detail">
+              <div class="icon">設</div>
+              <div>
+                <h3>站点策略与外观设置</h3>
+                <p>支持全局启用或暂停，也可按网站设置黑白名单。注音卡片的主题、字体大小、注音颜色、圆角和显示位置都可调整。</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="technology">
+        <div class="shell">
+          <div class="section-head">
+            <h2>读音处理更贴近学习者场景</h2>
+            <p>技术能力保持在背后工作，目标是让用户少停顿、少猜读音、少打断阅读节奏。</p>
+          </div>
+          <div class="trust-grid">
+            <article class="trust">
+              <h3>简洁可信的注音能力</h3>
+              <p>
+                插件结合日语分词、常用汉字读音数据、固定读音词库、专有名词识别与本地规则处理，为网页文本生成更适合学习者阅读的假名注音。对容易混淆的多音字、促音、数字量词和人名地名场景做了额外优化。
+              </p>
+              <ul class="trust-list">
+                <li>短词、长句和网页正文采用不同呈现方式，减少阅读压力。</li>
+                <li>保留错误反馈入口，方便持续优化容易误读的词和专有名词。</li>
+                <li>直接运行在浏览器阅读场景中，不需要复制粘贴到另一个工具。</li>
+              </ul>
+            </article>
+            <aside class="quote">
+              <h3>适合这些阅读时刻</h3>
+              <p>想看懂日本新闻里的专有名词，想读博客和资料但不想频繁查词，想把一篇网页整理成精读材料，或者想把遇到的生词变成之后真的会读的词。</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="privacy" class="privacy">
+        <div class="shell">
+          <div class="section-head">
+            <h2>轻量、本地、贴近个人学习流程</h2>
+            <p>瓯葉专注于阅读辅助，不强迫你改变原有网页阅读习惯，也不把学习记录做成负担。</p>
+          </div>
+          <div class="privacy-grid">
+            <article class="privacy-item">
+              <h3>数据默认保存在本地</h3>
+              <p>设置、收藏词条、导出草稿和最近导出记录默认保存在浏览器本地，便于快速访问和个人管理。</p>
+            </article>
+            <article class="privacy-item">
+              <h3>按站点灵活启用</h3>
+              <p>你可以在当前站点快速启用或禁用插件，也可以在后台统一维护黑名单和白名单。</p>
+            </article>
+            <article class="privacy-item">
+              <h3>不打扰原网页</h3>
+              <p>智能模式降低注音密度，外观设置适配不同网页环境，让辅助信息服务阅读，而不是盖过内容。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="copy">
+        <div class="shell">
+          <div class="section-head">
+            <h2>适合官网使用的产品标语</h2>
+            <p>用于商店截图、官网首屏、社交分享或安装页副标题。</p>
+          </div>
+          <div class="slogans">
+            <span>划一下，读音就跟上。</span>
+            <span>让日语网页从查来查去，变成连续阅读。</span>
+            <span>把真实日语内容，变成每天能复习的材料。</span>
+            <span>看网页、听读音、存生词，一次完成。</span>
+            <span>给中文用户的日语网页阅读助手。</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="install" class="cta">
+        <div class="shell">
+          <h2>把每天遇到的日语网页，变成你的阅读教材</h2>
+          <p>从第一处看不准的汉字读音开始，让瓯葉划词日语注音帮你把阅读、朗读、翻译、收藏和复习接起来。</p>
+          <a class="button primary" href="#" aria-label="开始使用瓯葉划词日语注音">开始使用瓯葉划词日语注音</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-row">
+        <span>© 2026 瓯葉划词日语注音</span>
+        <span>SEO 标题：瓯葉划词日语注音 - 日语网页阅读辅助浏览器扩展</span>
+      </div>
+    </footer>
+  </body>
+</html>
