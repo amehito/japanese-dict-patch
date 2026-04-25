@@ -6,7 +6,7 @@
 
 访问本仓库的用户可以在页面右侧的 **Releases** 区域下载安装包，也可以直接打开：
 
-[下载最新版本](https://github.com/amehito/furigana/releases)
+[下载最新版本](https://github.com/amehito/japanese-dict-patch/releases/tag/v1)
 
 ## 安装教程
 
