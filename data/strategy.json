@@ -1,18 +1,20 @@
 {
   "version": 1,
   "updatedAt": "2026-04-25T00:00:00+09:00",
+  "email": "ywc959@gmail.com",
+  "wechat": "ywc9592",
   "groups": [
     {
       "id": "wechat-free-main",
       "enabled": true,
-      "type": "free",
-      "title": "日语学习免费交流群",
+      "type": "paid",
+      "title": "日语学习交流群",
       "subtitle": "插件使用交流 / 日语学习互助 / 资料分享",
-      "description": "适合所有正在学习日语的用户加入，免费交流学习方法、插件使用体验和日语阅读问题。",
+      "description": "适合所有正在学习日语的用户加入，交流学习方法、插件使用体验和日语阅读问题。",
       "price": {
-        "amount": 0,
+        "amount": 19.9,
         "currency": "CNY",
-        "unit": "free"
+        "unit": "period"
       },
       "capacity": null,
       "currentCount": null,
@@ -24,24 +26,24 @@
         "qrCodeUrl": "",
         "qrExpireAt": null,
         "contactId": "",
-        "backupText": "微信群二维码失效后，请添加微信并备注：日语免费群",
+        "backupText": "微信群二维码失效后，请添加微信并备注：日语学习群",
         "rules": [
           "每日中午1点到下午5点为活跃时间，仅限讨论日语学习相关内容，请不要发中文哦",
           "请勿发布与日语学习无关的内容",
           "尊重每位群成员，禁止人身攻击",
-          "积极分享学习资源和经验"
+          "积极参与分享学习资源和经验"
         ],
         "joinGuide": [
           "扫描微信群二维码",
-          "如果二维码失效，请添加微信",
-          "备注：日语免费群"
+          "如果二维码失效，请添加微信: ywc9592",
+          "备注：日语学习群"
         ]
       },
       "priority": 100,
-      "tags": ["免费", "日语学习", "微信群"],
-      "ctaText": "加入免费群",
+      "tags": ["日语学习", "微信群"],
+      "ctaText": "加入学习群",
       "highlight": true,
-      "statusText": "免费开放中"
+      "statusText": "开放中"
     },
     {
       "id": "wechat-n2-n3-202607",

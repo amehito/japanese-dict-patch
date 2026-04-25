@@ -836,7 +836,7 @@
           <div class="section-head">
             <h2>这不是“资料越多越好”的群，而是把阅读策略跑起来</h2>
             <p>
-              免费群适合先交流插件和学习方法；付费群更适合需要稳定节奏、阶段目标和精读陪伴的同学。
+              入门学习群适合先交流插件和学习方法；进阶学习群更适合需要稳定节奏、阶段目标和精读陪伴的同学。
             </p>
           </div>
           <div class="strategy-grid">
@@ -954,11 +954,11 @@
           {
             "id": "wechat-free-main",
             "enabled": true,
-            "type": "free",
-            "title": "日语学习免费交流群",
+            "type": "paid",
+            "title": "日语学习交流群",
             "subtitle": "插件使用交流 / 日语学习互助 / 资料分享",
-            "description": "适合所有正在学习日语的用户加入，免费交流学习方法、插件使用体验和日语阅读问题。",
-            "price": { "amount": 0, "currency": "CNY", "unit": "free" },
+            "description": "适合所有正在学习日语的用户加入，交流学习方法、插件使用体验和日语阅读问题。",
+            "price": { "amount": 9.9, "currency": "CNY", "unit": "period" },
             "capacity": null,
             "currentCount": null,
             "startAt": "2026-04-24T00:00:00+09:00",
@@ -969,20 +969,20 @@
               "qrCodeUrl": "",
               "qrExpireAt": null,
               "contactId": "",
-              "backupText": "微信群二维码失效后，请添加微信并备注：日语免费群",
+              "backupText": "微信群二维码失效后，请添加微信并备注：日语学习群",
               "rules": [
                 "每日中午1点到下午5点为活跃时间，仅限讨论日语学习相关内容，请不要发中文哦",
                 "请勿发布与日语学习无关的内容",
                 "尊重每位群成员，禁止人身攻击",
                 "积极分享学习资源和经验"
               ],
-              "joinGuide": ["扫描微信群二维码", "如果二维码失效，请添加微信", "备注：日语免费群"]
+              "joinGuide": ["扫描微信群二维码", "如果二维码失效，请添加微信", "备注：日语学习群"]
             },
             "priority": 100,
-            "tags": ["免费", "日语学习", "微信群"],
-            "ctaText": "加入免费群",
+            "tags": ["日语学习", "微信群"],
+            "ctaText": "加入学习群",
             "highlight": true,
-            "statusText": "免费开放中"
+            "statusText": "开放中"
           },
           {
             "id": "wechat-n2-n3-202607",
@@ -1142,7 +1142,7 @@
 
         const paidCount = groups.filter((group) => group.type === "paid").length;
         const updatedAt = formatDate(data.updatedAt);
-        meta.textContent = `当前开放 ${groups.length} 个社群${paidCount ? `，其中 ${paidCount} 个付费学习群` : ""}${updatedAt ? `。更新于 ${updatedAt}` : ""}。`;
+        meta.textContent = ``;
       };
 
       const renderFallback = () => {
