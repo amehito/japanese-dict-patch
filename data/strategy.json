@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-25T00:00:00+09:00",
+  "groups": [
+    {
+      "id": "wechat-free-main",
+      "enabled": true,
+      "type": "free",
+      "title": "日语学习免费交流群",
+      "subtitle": "插件使用交流 / 日语学习互助 / 资料分享",
+      "description": "适合所有正在学习日语的用户加入，免费交流学习方法、插件使用体验和日语阅读问题。",
+      "price": {
+        "amount": 0,
+        "currency": "CNY",
+        "unit": "free"
+      },
+      "capacity": null,
+      "currentCount": null,
+      "startAt": "2026-04-24T00:00:00+09:00",
+      "endAt": null,
+      "join": {
+        "platform": "wechat",
+        "joinType": "qr",
+        "qrCodeUrl": "",
+        "qrExpireAt": null,
+        "contactId": "",
+        "backupText": "微信群二维码失效后，请添加微信并备注：日语免费群",
+        "rules": [
+          "每日中午1点到下午5点为活跃时间，仅限讨论日语学习相关内容，请不要发中文哦",
+          "请勿发布与日语学习无关的内容",
+          "尊重每位群成员，禁止人身攻击",
+          "积极分享学习资源和经验"
+        ],
+        "joinGuide": [
+          "扫描微信群二维码",
+          "如果二维码失效，请添加微信",
+          "备注：日语免费群"
+        ]
+      },
+      "priority": 100,
+      "tags": ["免费", "日语学习", "微信群"],
+      "ctaText": "加入免费群",
+      "highlight": true,
+      "statusText": "免费开放中"
+    },
+    {
+      "id": "wechat-n2-n3-202607",
+      "enabled": false,
+      "type": "paid",
+      "title": "N2～N3 学习群",
+      "subtitle": "每日阅读训练 / 精读陪伴 / 学习打卡",
+      "description": "适合 N3 到 N2 阶段学习者，通过每日阅读、词汇积累和精读训练提升日语理解能力。",
+      "price": {
+        "amount": 298,
+        "currency": "CNY",
+        "unit": "period"
+      },
+      "capacity": 200,
+      "currentCount": 0,
+      "startAt": "2026-04-24T00:00:00+09:00",
+      "endAt": "2026-07-10T23:59:59+09:00",
+      "join": {
+        "platform": "wechat",
+        "joinType": "qr",
+        "qrCodeUrl": "",
+        "qrExpireAt": null,
+        "contactId": "",
+        "backupText": "微信群二维码失效后，请添加微信并备注：N2N3学习群",
+        "joinGuide": [
+          "扫描二维码添加微信",
+          "备注：N2N3学习群",
+          "确认后邀请进群"
+        ]
+      },
+      "priority": 90,
+      "tags": ["N2", "N3", "付费", "微信群"],
+      "ctaText": "加入 N2～N3 群",
+      "highlight": false,
+      "statusText": "限额 200 人"
+    },
+    {
+      "id": "wechat-n1-202612",
+      "enabled": false,
+      "type": "paid",
+      "title": "N1 学习群",
+      "subtitle": "高级阅读训练 / N1冲刺 / 精读提升",
+      "description": "适合准备 N1 或希望提升高级日语阅读能力的学习者，通过精读、词汇和语法理解训练提高阅读水平。",
+      "price": {
+        "amount": 398,
+        "currency": "CNY",
+        "unit": "period"
+      },
+      "capacity": 200,
+      "currentCount": 0,
+      "startAt": "2026-04-24T00:00:00+09:00",
+      "endAt": "2026-12-20T23:59:59+09:00",
+      "join": {
+        "platform": "wechat",
+        "joinType": "qr",
+        "qrCodeUrl": "",
+        "qrExpireAt": null,
+        "contactId": "",
+        "backupText": "微信群二维码失效后，请添加微信并备注：N1学习群",
+        "joinGuide": [
+          "扫描二维码添加微信",
+          "备注：N1学习群",
+          "确认后邀请进群"
+        ]
+      },
+      "priority": 80,
+      "tags": ["N1", "付费", "微信群"],
+      "ctaText": "加入 N1 群",
+      "highlight": false,
+      "statusText": "限额 200 人"
+    }
+  ],
+  "reservedPlatforms": [
+    {
+      "platform": "qq",
+      "enabled": false,
+      "note": "QQ群入口预留，后续需要时开启"
+    }
+  ]
+}

@@ -1,0 +1,1189 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>日语精读社群 - 瓯葉划词日语注音</title>
+    <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
+    <meta
+      name="description"
+      content="加入瓯葉日语学习社群，用真实日语网页做每日阅读、精读打卡和能力提升。适合 N3 到 N1 学习者。"
+    />
+    <meta name="theme-color" content="#f7f8f3" />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #20302c;
+        --muted: #65736f;
+        --paper: #fbfbf7;
+        --soft: #edf2eb;
+        --line: #dce5dc;
+        --leaf: #2f7a61;
+        --leaf-dark: #1f5f4a;
+        --gold: #c48a2c;
+        --coral: #d76552;
+        --aqua: #3c8a95;
+        --night: #25332f;
+        --white: #ffffff;
+        --shadow: 0 24px 70px rgba(35, 55, 49, 0.13);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+          sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+        line-height: 1.65;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid rgba(220, 229, 220, 0.82);
+        background: rgba(251, 251, 247, 0.9);
+        backdrop-filter: blur(18px);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 72px;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 750;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 40px;
+        height: 40px;
+        place-items: center;
+        border: 1px solid #cfded4;
+        border-radius: 12px;
+        background: #f4f8ef;
+        color: var(--leaf-dark);
+        font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+        font-size: 19px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 18px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        font-weight: 750;
+        white-space: nowrap;
+      }
+
+      .button.primary {
+        color: #ffffff;
+        background: var(--leaf);
+        box-shadow: 0 12px 26px rgba(47, 122, 97, 0.22);
+      }
+
+      .button.secondary {
+        color: var(--leaf-dark);
+        background: rgba(255, 255, 255, 0.78);
+        border-color: #cbded4;
+      }
+
+      .button.dark {
+        color: #ffffff;
+        background: var(--night);
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 76px 0 42px;
+        background:
+          linear-gradient(90deg, rgba(251, 251, 247, 0.98) 0%, rgba(251, 251, 247, 0.9) 48%, rgba(251, 251, 247, 0.2) 100%),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900'%3E%3Crect width='1600' height='900' fill='%23edf2eb'/%3E%3Cg opacity='.52' font-family='Hiragino Mincho ProN, Yu Mincho, serif' fill='%232f7a61'%3E%3Ctext x='1030' y='170' font-size='76'%3E精読%3C/text%3E%3Ctext x='1260' y='310' font-size='52'%3EN1%3C/text%3E%3Ctext x='980' y='460' font-size='62'%3E語彙%3C/text%3E%3Ctext x='1210' y='600' font-size='54'%3EN2・N3%3C/text%3E%3C/g%3E%3Cg transform='translate(880 140)'%3E%3Crect x='0' y='0' width='540' height='610' rx='28' fill='%23ffffff' opacity='.84'/%3E%3Crect x='42' y='52' width='250' height='20' rx='10' fill='%23cfded4'/%3E%3Crect x='42' y='108' width='430' height='14' rx='7' fill='%23e1e8df'/%3E%3Crect x='42' y='142' width='370' height='14' rx='7' fill='%23e1e8df'/%3E%3Crect x='42' y='206' width='456' height='132' rx='22' fill='%23fff6e6' stroke='%23ecd4aa'/%3E%3Ctext x='72' y='258' font-size='26' fill='%2320302c'%3E毎日、少しずつ読めるように。%3C/text%3E%3Ctext x='72' y='298' font-size='18' fill='%23a86d19'%3E阅读 · 词汇 · 打卡 · 反馈%3C/text%3E%3Crect x='42' y='384' width='210' height='92' rx='20' fill='%23f7faf5' stroke='%23dce5dc'/%3E%3Crect x='280' y='384' width='178' height='92' rx='20' fill='%23f7faf5' stroke='%23dce5dc'/%3E%3C/g%3E%3C/svg%3E");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.6fr);
+        gap: 48px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--leaf-dark);
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: var(--gold);
+      }
+
+      h1 {
+        max-width: 760px;
+        margin-bottom: 22px;
+        font-size: clamp(40px, 6.2vw, 72px);
+        line-height: 1.06;
+        letter-spacing: 0;
+      }
+
+      .hero-copy {
+        max-width: 700px;
+        color: #4f625c;
+        font-size: clamp(17px, 1.6vw, 21px);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin: 34px 0 26px;
+      }
+
+      .signals {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        max-width: 700px;
+      }
+
+      .signal {
+        min-height: 92px;
+        padding: 16px;
+        border: 1px solid #d5e1d7;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .signal strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--leaf-dark);
+        font-size: 20px;
+      }
+
+      .signal span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .hero-panel {
+        padding: 22px;
+        border: 1px solid rgba(207, 222, 212, 0.82);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+      }
+
+      .panel-title {
+        margin-bottom: 18px;
+        font-size: 20px;
+        font-weight: 800;
+      }
+
+      .rhythm {
+        display: grid;
+        gap: 12px;
+      }
+
+      .rhythm-row {
+        display: grid;
+        grid-template-columns: 74px 1fr;
+        gap: 12px;
+        align-items: start;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #ffffff;
+      }
+
+      .rhythm-row b {
+        color: var(--gold);
+      }
+
+      .rhythm-row span {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      section {
+        padding: 78px 0;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.82fr) minmax(280px, 0.5fr);
+        gap: 40px;
+        align-items: end;
+        margin-bottom: 34px;
+      }
+
+      .section-head h2 {
+        margin-bottom: 0;
+        font-size: clamp(30px, 4vw, 48px);
+        line-height: 1.15;
+      }
+
+      .section-head p {
+        margin-bottom: 4px;
+        color: var(--muted);
+      }
+
+      .strategy {
+        background: #eef3ec;
+      }
+
+      .strategy-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border: 1px solid #d3dfd5;
+        background: #ffffff;
+      }
+
+      .strategy-item {
+        min-height: 218px;
+        padding: 26px;
+        border-right: 1px solid #d3dfd5;
+      }
+
+      .strategy-item:last-child {
+        border-right: 0;
+      }
+
+      .strategy-index {
+        margin-bottom: 24px;
+        color: var(--leaf);
+        font-size: 13px;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .strategy-item h3 {
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+
+      .strategy-item p {
+        color: var(--muted);
+      }
+
+      .groups-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .group-card {
+        position: relative;
+        display: flex;
+        min-height: 100%;
+        flex-direction: column;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #ffffff;
+        box-shadow: 0 16px 34px rgba(41, 64, 57, 0.06);
+      }
+
+      .group-card.featured {
+        border-color: #ecd4aa;
+        background: #fffaf0;
+      }
+
+      .group-card.paid {
+        border-top: 4px solid var(--leaf);
+      }
+
+      .card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 16px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 0 10px;
+        border-radius: 999px;
+        color: var(--leaf-dark);
+        background: #e7f1e8;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .badge.paid {
+        color: #8a5615;
+        background: #fff1ca;
+      }
+
+      .price {
+        font-size: 38px;
+        font-weight: 850;
+        line-height: 1;
+      }
+
+      .price small {
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 650;
+      }
+
+      .group-card h3 {
+        margin-bottom: 6px;
+        font-size: 25px;
+        line-height: 1.24;
+      }
+
+      .subtitle {
+        margin-bottom: 14px;
+        color: var(--leaf-dark);
+        font-weight: 750;
+      }
+
+      .description {
+        color: var(--muted);
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 18px 0;
+      }
+
+      .tags span {
+        padding: 6px 10px;
+        border: 1px solid #dce5dc;
+        border-radius: 999px;
+        color: #536862;
+        background: #f9fbf7;
+        font-size: 13px;
+      }
+
+      .join-box {
+        margin-top: auto;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+      }
+
+      .join-guide {
+        display: grid;
+        gap: 8px;
+        margin: 0 0 18px;
+        padding: 0;
+        color: #4f625c;
+        list-style: none;
+      }
+
+      .join-guide li {
+        display: flex;
+        gap: 8px;
+      }
+
+      .join-guide li::before {
+        content: "✓";
+        color: var(--leaf);
+        font-weight: 850;
+      }
+
+      .qr {
+        display: grid;
+        min-height: 148px;
+        margin-bottom: 16px;
+        place-items: center;
+        border: 1px dashed #cbded4;
+        border-radius: 8px;
+        background: #f7faf5;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .qr img {
+        width: min(180px, 100%);
+        border-radius: 8px;
+      }
+
+      .wechat-id {
+        margin: 0 0 12px;
+        color: var(--leaf-dark);
+        font-weight: 800;
+      }
+
+      .open-join {
+        width: 100%;
+        cursor: pointer;
+        font: inherit;
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 22px;
+        background: rgba(22, 32, 29, 0.58);
+      }
+
+      .modal.is-open {
+        display: flex;
+      }
+
+      .modal-panel {
+        width: min(720px, 100%);
+        max-height: min(820px, calc(100vh - 44px));
+        overflow: auto;
+        border: 1px solid #cfded4;
+        border-radius: 8px;
+        background: #ffffff;
+        box-shadow: 0 26px 80px rgba(15, 30, 25, 0.28);
+      }
+
+      .modal-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 24px 24px 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .modal-head h2 {
+        margin-bottom: 6px;
+        font-size: clamp(24px, 4vw, 34px);
+        line-height: 1.18;
+      }
+
+      .modal-head p {
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .modal-close {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        flex: 0 0 auto;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--ink);
+        background: #f7faf5;
+        cursor: pointer;
+        font: inherit;
+        font-size: 22px;
+        line-height: 1;
+      }
+
+      .modal-body {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(190px, 0.58fr);
+        gap: 22px;
+        padding: 24px;
+      }
+
+      .modal-section h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+
+      .rule-list,
+      .modal-guide {
+        display: grid;
+        gap: 9px;
+        margin: 0 0 20px;
+        padding: 0;
+        color: #4f625c;
+        list-style: none;
+      }
+
+      .rule-list li,
+      .modal-guide li {
+        display: flex;
+        gap: 9px;
+      }
+
+      .rule-list li::before {
+        content: "!";
+        display: grid;
+        width: 22px;
+        height: 22px;
+        flex: 0 0 auto;
+        place-items: center;
+        border-radius: 999px;
+        color: #ffffff;
+        background: var(--gold);
+        font-size: 13px;
+        font-weight: 850;
+      }
+
+      .modal-guide li::before {
+        content: "✓";
+        color: var(--leaf);
+        font-weight: 850;
+      }
+
+      .modal-qr {
+        display: grid;
+        min-height: 210px;
+        place-items: center;
+        border: 1px dashed #cbded4;
+        border-radius: 8px;
+        background: #f7faf5;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .modal-qr img {
+        width: min(210px, 100%);
+        border-radius: 8px;
+      }
+
+      .modal-note {
+        margin: 14px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .promise {
+        background: var(--night);
+        color: #f6faf2;
+      }
+
+      .promise .section-head p {
+        color: #cdd9d2;
+      }
+
+      .promise-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .promise-item {
+        min-height: 190px;
+        padding: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .promise-item p {
+        color: #cdd9d2;
+      }
+
+      .closing {
+        padding: 82px 0 92px;
+        text-align: center;
+        background: #f6f8f1;
+      }
+
+      .closing h2 {
+        max-width: 760px;
+        margin: 0 auto 18px;
+        font-size: clamp(32px, 5vw, 56px);
+        line-height: 1.12;
+      }
+
+      .closing p {
+        max-width: 700px;
+        margin: 0 auto 28px;
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .site-footer {
+        padding: 28px 0;
+        border-top: 1px solid var(--line);
+        color: #72807b;
+        font-size: 14px;
+      }
+
+      .footer-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      @media (max-width: 960px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero-grid,
+        .section-head {
+          grid-template-columns: 1fr;
+        }
+
+        .signals,
+        .groups-grid,
+        .promise-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .strategy-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .modal-body {
+          grid-template-columns: 1fr;
+        }
+
+        .strategy-item:nth-child(2) {
+          border-right: 0;
+        }
+
+        .strategy-item:nth-child(-n + 2) {
+          border-bottom: 1px solid #d3dfd5;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .shell {
+          width: min(100% - 28px, 1120px);
+        }
+
+        .nav {
+          min-height: 64px;
+        }
+
+        .brand span:last-child {
+          max-width: 184px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .hero {
+          padding: 48px 0 34px;
+          background-position: 58% center;
+        }
+
+        .hero-actions {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        section {
+          padding: 60px 0;
+        }
+
+        .strategy-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .strategy-item {
+          border-right: 0;
+          border-bottom: 1px solid #d3dfd5;
+        }
+
+        .strategy-item:last-child {
+          border-bottom: 0;
+        }
+
+        .footer-row {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .modal {
+          padding: 12px;
+        }
+
+        .modal-panel {
+          max-height: calc(100vh - 24px);
+        }
+
+        .modal-head,
+        .modal-body {
+          padding: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="shell nav">
+        <a class="brand" href="index.html" aria-label="瓯葉划词日语注音首页">
+          <span class="brand-mark">葉</span>
+          <span>瓯葉划词日语注音</span>
+        </a>
+        <nav class="nav-links" aria-label="主导航">
+          <a href="index.html#features">核心</a>
+          <a href="index.html#workflow">使用流程</a>
+          <a href="index.html#details">功能详情</a>
+          <a href="sale.html">社群</a>
+        </nav>
+        <a class="button primary" href="#groups">查看社群</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="shell hero-grid">
+          <div>
+            <p class="eyebrow">把日语学习变成一件每天做得下去的事</p>
+            <h1 id="hero-title">加入日语精读社群，一起把真实材料读明白</h1>
+            <p class="hero-copy">
+              你已经有了划词注音、朗读和收藏工具。社群要做的是把工具变成稳定的学习节奏：每天读一点、积累一点、复盘一点，在真实日语内容里推进 N3、N2 到 N1 的阅读能力。
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#groups">选择适合你的群</a>
+              <a class="button secondary" href="#strategy">看看学习策略</a>
+            </div>
+            <div class="signals" aria-label="社群亮点">
+              <div class="signal">
+                <strong>每日阅读</strong>
+                <span>用短篇材料保持输入，不靠临时冲刺。</span>
+              </div>
+              <div class="signal">
+                <strong>精读打卡</strong>
+                <span>围绕词汇、句型和理解做可复盘练习。</span>
+              </div>
+              <div class="signal">
+                <strong>阶段分群</strong>
+                <span>N2～N3 和 N1 学习者各自推进。</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-panel" aria-label="社群学习节奏">
+            <div class="panel-title">社群里的学习节奏</div>
+            <div class="rhythm">
+              <div class="rhythm-row">
+                <b>读</b>
+                <span>选一段真实日语材料，先用扩展解决读音和基础理解。</span>
+              </div>
+              <div class="rhythm-row">
+                <b>拆</b>
+                <span>把卡住的词、句型、表达拆出来，形成自己的复习清单。</span>
+              </div>
+              <div class="rhythm-row">
+                <b>练</b>
+                <span>用打卡和复盘把理解变成稳定能力，而不是看过就忘。</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="strategy" class="strategy">
+        <div class="shell">
+          <div class="section-head">
+            <h2>这不是“资料越多越好”的群，而是把阅读策略跑起来</h2>
+            <p>
+              免费群适合先交流插件和学习方法；付费群更适合需要稳定节奏、阶段目标和精读陪伴的同学。
+            </p>
+          </div>
+          <div class="strategy-grid">
+            <article class="strategy-item">
+              <div class="strategy-index">Step 01</div>
+              <h3>从真实材料开始</h3>
+              <p>用网页、文章和新闻片段做训练，减少只会做题、不会阅读真实日语的落差。</p>
+            </article>
+            <article class="strategy-item">
+              <div class="strategy-index">Step 02</div>
+              <h3>先扫清读音障碍</h3>
+              <p>借助划词注音和朗读，把汉字读音、词形和声音对应起来，降低开读成本。</p>
+            </article>
+            <article class="strategy-item">
+              <div class="strategy-index">Step 03</div>
+              <h3>精读关键句</h3>
+              <p>不是逐字硬啃，而是抓住影响理解的词汇、语法结构和上下文逻辑。</p>
+            </article>
+            <article class="strategy-item">
+              <div class="strategy-index">Step 04</div>
+              <h3>用复盘留住进步</h3>
+              <p>把生词和难句沉淀下来，持续复习，形成能迁移到下一篇文章的阅读能力。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="groups" aria-labelledby="groups-title">
+        <div class="shell">
+          <div class="section-head">
+            <h2 id="groups-title">选择你现在最需要的社群</h2>
+            <p id="strategy-meta">正在读取社群策略...</p>
+          </div>
+          <div class="groups-grid" id="group-list" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="promise" aria-labelledby="promise-title">
+        <div class="shell">
+          <div class="section-head">
+            <h2 id="promise-title">适合愿意认真读日语的人</h2>
+            <p>
+              社群不是神奇捷径。它更像一个稳定的阅读场：有人一起读，有目标可以跟，有问题可以回到材料里解决。
+            </p>
+          </div>
+          <div class="promise-grid">
+            <article class="promise-item">
+              <h3>适合</h3>
+              <p>正在 N3、N2、N1 阶段，想把词汇语法转化成阅读理解能力的学习者。</p>
+            </article>
+            <article class="promise-item">
+              <h3>不适合</h3>
+              <p>只想收藏资料、不愿意阅读打卡，或期待几天内速成的学习方式。</p>
+            </article>
+            <article class="promise-item">
+              <h3>你会得到</h3>
+              <p>更稳定的输入节奏、更清楚的精读方法，以及一批同样在读真实日语的人。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div class="shell">
+          <h2>先用工具读起来，再用社群坚持下去</h2>
+          <p>
+            如果你已经开始用瓯葉划词日语注音读网页，下一步就是让阅读有节奏、有反馈、有同伴。
+          </p>
+          <a class="button dark" href="#groups">查看开放中的社群</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-row">
+        <span>© 2026 瓯葉划词日语注音</span>
+        <a href="index.html">返回扩展首页</a>
+      </div>
+    </footer>
+
+    <div class="modal" id="join-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+      <div class="modal-panel">
+        <div class="modal-head">
+          <div>
+            <h2 id="modal-title">进群须知</h2>
+            <p id="modal-subtitle"></p>
+          </div>
+          <button class="modal-close" type="button" aria-label="关闭弹窗">×</button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <div class="modal-section" aria-labelledby="modal-rules-title">
+              <h3 id="modal-rules-title">进群须知</h3>
+              <ul class="rule-list" id="modal-rules"></ul>
+            </div>
+            <div class="modal-section" aria-labelledby="modal-guide-title">
+              <h3 id="modal-guide-title">进群方式</h3>
+              <ul class="modal-guide" id="modal-guide"></ul>
+              <p class="modal-note" id="modal-backup"></p>
+            </div>
+          </div>
+          <div>
+            <div class="modal-qr" id="modal-qr"></div>
+            <p class="wechat-id" id="modal-contact"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="application/json" id="strategy-fallback">
+      {
+        "version": 1,
+        "updatedAt": "2026-04-25T00:00:00+09:00",
+        "groups": [
+          {
+            "id": "wechat-free-main",
+            "enabled": true,
+            "type": "free",
+            "title": "日语学习免费交流群",
+            "subtitle": "插件使用交流 / 日语学习互助 / 资料分享",
+            "description": "适合所有正在学习日语的用户加入，免费交流学习方法、插件使用体验和日语阅读问题。",
+            "price": { "amount": 0, "currency": "CNY", "unit": "free" },
+            "capacity": null,
+            "currentCount": null,
+            "startAt": "2026-04-24T00:00:00+09:00",
+            "endAt": null,
+            "join": {
+              "platform": "wechat",
+              "joinType": "qr",
+              "qrCodeUrl": "",
+              "qrExpireAt": null,
+              "contactId": "",
+              "backupText": "微信群二维码失效后，请添加微信并备注：日语免费群",
+              "rules": [
+                "每日中午1点到下午5点为活跃时间，仅限讨论日语学习相关内容，请不要发中文哦",
+                "请勿发布与日语学习无关的内容",
+                "尊重每位群成员，禁止人身攻击",
+                "积极分享学习资源和经验"
+              ],
+              "joinGuide": ["扫描微信群二维码", "如果二维码失效，请添加微信", "备注：日语免费群"]
+            },
+            "priority": 100,
+            "tags": ["免费", "日语学习", "微信群"],
+            "ctaText": "加入免费群",
+            "highlight": true,
+            "statusText": "免费开放中"
+          },
+          {
+            "id": "wechat-n2-n3-202607",
+            "enabled": false,
+            "type": "paid",
+            "title": "N2～N3 学习群",
+            "subtitle": "每日阅读训练 / 精读陪伴 / 学习打卡",
+            "description": "适合 N3 到 N2 阶段学习者，通过每日阅读、词汇积累和精读训练提升日语理解能力。",
+            "price": { "amount": 298, "currency": "CNY", "unit": "period" },
+            "capacity": 200,
+            "currentCount": 0,
+            "startAt": "2026-04-24T00:00:00+09:00",
+            "endAt": "2026-07-10T23:59:59+09:00",
+            "join": {
+              "platform": "wechat",
+              "joinType": "qr",
+              "qrCodeUrl": "",
+              "qrExpireAt": null,
+              "contactId": "",
+              "backupText": "微信群二维码失效后，请添加微信并备注：N2N3学习群",
+              "joinGuide": ["扫描二维码添加微信", "备注：N2N3学习群", "确认后邀请进群"]
+            },
+            "priority": 90,
+            "tags": ["N2", "N3", "付费", "微信群"],
+            "ctaText": "加入 N2～N3 群",
+            "highlight": false,
+            "statusText": "限额 200 人"
+          },
+          {
+            "id": "wechat-n1-202612",
+            "enabled": false,
+            "type": "paid",
+            "title": "N1 学习群",
+            "subtitle": "高级阅读训练 / N1冲刺 / 精读提升",
+            "description": "适合准备 N1 或希望提升高级日语阅读能力的学习者，通过精读、词汇和语法理解训练提高阅读水平。",
+            "price": { "amount": 398, "currency": "CNY", "unit": "period" },
+            "capacity": 200,
+            "currentCount": 0,
+            "startAt": "2026-04-24T00:00:00+09:00",
+            "endAt": "2026-12-20T23:59:59+09:00",
+            "join": {
+              "platform": "wechat",
+              "joinType": "qr",
+              "qrCodeUrl": "",
+              "qrExpireAt": null,
+              "contactId": "",
+              "backupText": "微信群二维码失效后，请添加微信并备注：N1学习群",
+              "joinGuide": ["扫描二维码添加微信", "备注：N1学习群", "确认后邀请进群"]
+            },
+            "priority": 80,
+            "tags": ["N1", "付费", "微信群"],
+            "ctaText": "加入 N1 群",
+            "highlight": false,
+            "statusText": "限额 200 人"
+          }
+        ]
+      }
+    </script>
+
+    <script>
+      const currencyMap = {
+        CNY: "¥",
+      };
+
+      const formatDate = (value) => {
+        if (!value) return "";
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return "";
+        return new Intl.DateTimeFormat("zh-CN", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }).format(date);
+      };
+
+      const formatPrice = (price) => {
+        if (!price || price.amount === 0) return "免费";
+        const symbol = currencyMap[price.currency] || "";
+        return `${symbol}${price.amount}`;
+      };
+
+      let currentGroups = [];
+
+      const createGroupCard = (group) => {
+        const article = document.createElement("article");
+        article.className = `group-card ${group.highlight ? "featured" : ""} ${group.type === "paid" ? "paid" : "free"}`;
+
+        const status = group.statusText || (group.type === "paid" ? "付费社群" : "免费社群");
+        const endAt = formatDate(group.endAt);
+        const tags = Array.isArray(group.tags) ? group.tags : [];
+
+        article.id = group.id;
+        article.innerHTML = `
+          <div class="card-top">
+            <span class="badge ${group.type === "paid" ? "paid" : ""}">${status}</span>
+            <div class="price">${formatPrice(group.price)}${group.price?.amount ? "<small> / 期</small>" : ""}</div>
+          </div>
+          <h3>${group.title}</h3>
+          <p class="subtitle">${group.subtitle || ""}</p>
+          <p class="description">${group.description || ""}</p>
+          <div class="tags">${tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
+          <div class="join-box">
+            ${endAt ? `<p class="description">本期截止：${endAt}</p>` : ""}
+            <button class="button primary open-join" type="button" data-group-id="${group.id}" aria-label="${group.ctaText || "加入社群"}">${group.ctaText || "加入社群"}</button>
+          </div>
+        `;
+
+        return article;
+      };
+
+      const setList = (selector, items, fallback) => {
+        const list = document.querySelector(selector);
+        const values = items.length ? items : [fallback];
+        list.innerHTML = values.map((item) => `<li>${item}</li>`).join("");
+      };
+
+      const openJoinModal = (group) => {
+        const modal = document.querySelector("#join-modal");
+        const qrCodeUrl = group.join?.qrCodeUrl?.trim();
+        const contactId = group.join?.contactId?.trim();
+        const rules = Array.isArray(group.join?.rules) ? group.join.rules : [];
+        const guides = Array.isArray(group.join?.joinGuide) ? group.join.joinGuide : [];
+        const backupText = group.join?.backupText?.trim();
+
+        document.querySelector("#modal-title").textContent = group.title;
+        document.querySelector("#modal-subtitle").textContent = group.subtitle || "请阅读须知后再进群。";
+        setList("#modal-rules", rules, "请遵守群内学习秩序，围绕日语学习交流。");
+        setList("#modal-guide", guides, "扫描二维码或添加微信后，按提示备注群名。");
+        document.querySelector("#modal-backup").textContent = backupText || "";
+        document.querySelector("#modal-contact").textContent = contactId ? `微信号：${contactId}` : "";
+        document.querySelector("#modal-qr").innerHTML = qrCodeUrl
+          ? `<img src="${qrCodeUrl}" alt="${group.title} 入群二维码" />`
+          : "<span>二维码即将更新<br />请添加微信并备注群名</span>";
+
+        modal.hidden = false;
+        modal.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+        document.querySelector(".modal-close").focus();
+      };
+
+      const closeJoinModal = () => {
+        const modal = document.querySelector("#join-modal");
+        modal.classList.remove("is-open");
+        modal.hidden = true;
+        document.body.style.overflow = "";
+      };
+
+      const renderGroups = (data) => {
+        const list = document.querySelector("#group-list");
+        const meta = document.querySelector("#strategy-meta");
+        const groups = (data.groups || [])
+          .filter((group) => group.enabled)
+          .sort((a, b) => (b.priority || 0) - (a.priority || 0));
+
+        currentGroups = groups;
+        list.replaceChildren(...groups.map(createGroupCard));
+
+        const paidCount = groups.filter((group) => group.type === "paid").length;
+        const updatedAt = formatDate(data.updatedAt);
+        meta.textContent = `当前开放 ${groups.length} 个社群${paidCount ? `，其中 ${paidCount} 个付费学习群` : ""}${updatedAt ? `。更新于 ${updatedAt}` : ""}。`;
+      };
+
+      const renderFallback = () => {
+        const fallback = document.querySelector("#strategy-fallback");
+        if (!fallback) throw new Error("fallback data missing");
+        renderGroups(JSON.parse(fallback.textContent));
+      };
+
+      fetch("data/strategy.json")
+        .then((response) => {
+          if (!response.ok) throw new Error("strategy load failed");
+          return response.json();
+        })
+        .then(renderGroups)
+        .catch(() => {
+          try {
+            renderFallback();
+          } catch {
+            document.querySelector("#strategy-meta").textContent =
+              "社群策略暂时没有读取成功，请稍后刷新页面。";
+            document.querySelector("#group-list").innerHTML =
+              '<article class="group-card"><h3>社群入口加载中</h3><p class="description">请确认 data/strategy.json 已部署到同级 data 目录。</p></article>';
+          }
+        });
+
+      document.querySelector("#group-list").addEventListener("click", (event) => {
+        const button = event.target.closest(".open-join");
+        if (!button) return;
+        const group = currentGroups.find((item) => item.id === button.dataset.groupId);
+        if (group) openJoinModal(group);
+      });
+
+      document.querySelector(".modal-close").addEventListener("click", closeJoinModal);
+      document.querySelector("#join-modal").addEventListener("click", (event) => {
+        if (event.target.id === "join-modal") closeJoinModal();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !document.querySelector("#join-modal").hidden) {
+          closeJoinModal();
+        }
+      });
+    </script>
+  </body>
+</html>
