@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>初学者教程 - 瓯葉划词日语注音</title>
+    <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
+    <meta
+      name="description"
+      content="日语初学者学习路线：从词汇熟悉、句子理解、跟读模仿到简单输出，配合瓯葉划词日语注音在真实网页中持续输入。"
+    />
+    <meta name="theme-color" content="#f7f8f3" />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #20302c;
+        --muted: #65736f;
+        --paper: #fbfbf7;
+        --soft: #edf2eb;
+        --line: #dce5dc;
+        --leaf: #2f7a61;
+        --leaf-dark: #1f5f4a;
+        --gold: #c48a2c;
+        --coral: #d76552;
+        --aqua: #3c8a95;
+        --white: #ffffff;
+        --shadow: 0 24px 70px rgba(35, 55, 49, 0.13);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+          sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+        line-height: 1.72;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid rgba(220, 229, 220, 0.82);
+        background: rgba(251, 251, 247, 0.9);
+        backdrop-filter: blur(18px);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 72px;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 750;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 40px;
+        height: 40px;
+        place-items: center;
+        border: 1px solid #cfded4;
+        border-radius: 12px;
+        background: #f4f8ef;
+        color: var(--leaf-dark);
+        font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+        font-size: 19px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .nav-links a[aria-current="page"] {
+        color: var(--leaf-dark);
+        font-weight: 800;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 18px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        font-weight: 750;
+        white-space: nowrap;
+      }
+
+      .button.primary {
+        color: #ffffff;
+        background: var(--leaf);
+        box-shadow: 0 12px 26px rgba(47, 122, 97, 0.22);
+      }
+
+      .button.secondary {
+        color: var(--leaf-dark);
+        background: rgba(255, 255, 255, 0.78);
+        border-color: #cbded4;
+      }
+
+      .hero {
+        padding: 76px 0 48px;
+        background:
+          linear-gradient(90deg, rgba(251, 251, 247, 0.98) 0%, rgba(251, 251, 247, 0.88) 52%, rgba(251, 251, 247, 0.18) 100%),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='760' viewBox='0 0 1600 760'%3E%3Crect width='1600' height='760' fill='%23edf2eb'/%3E%3Cg opacity='.52' font-family='Hiragino Mincho ProN, Yu Mincho, serif' fill='%232f7a61'%3E%3Ctext x='1040' y='160' font-size='78'%3Eことば%3C/text%3E%3Ctext x='1220' y='305' font-size='54'%3E読む%3C/text%3E%3Ctext x='980' y='452' font-size='64'%3Eまねる%3C/text%3E%3Ctext x='1210' y='590' font-size='50'%3E話す%3C/text%3E%3C/g%3E%3Cg transform='translate(875 132)'%3E%3Crect width='520' height='500' rx='28' fill='%23ffffff' opacity='.84'/%3E%3Crect x='42' y='54' width='290' height='20' rx='10' fill='%23cfded4'/%3E%3Crect x='42' y='112' width='430' height='14' rx='7' fill='%23e1e8df'/%3E%3Crect x='42' y='148' width='365' height='14' rx='7' fill='%23e1e8df'/%3E%3Crect x='42' y='220' width='438' height='142' rx='22' fill='%23fff6e6' stroke='%23ecd4aa'/%3E%3Ctext x='72' y='275' font-size='28' fill='%2320302c'%3E言葉は、何度も出会って覚える。%3C/text%3E%3Ctext x='72' y='317' font-size='18' fill='%23a86d19'%3E词汇 · 句子 · 跟读 · 输出%3C/text%3E%3C/g%3E%3C/svg%3E");
+        background-position: center;
+        background-size: cover;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.55fr);
+        gap: 48px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--leaf-dark);
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        background: var(--gold);
+      }
+
+      h1 {
+        max-width: 740px;
+        margin-bottom: 22px;
+        font-size: clamp(40px, 6vw, 70px);
+        line-height: 1.06;
+        letter-spacing: 0;
+      }
+
+      .hero-copy {
+        max-width: 690px;
+        color: #4f625c;
+        font-size: clamp(17px, 1.6vw, 21px);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 34px;
+      }
+
+      .route-card {
+        padding: 24px;
+        border: 1px solid rgba(207, 222, 212, 0.82);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+      }
+
+      .route-card h2 {
+        margin-bottom: 18px;
+        font-size: 20px;
+      }
+
+      .route-list {
+        display: grid;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .route-list a {
+        display: grid;
+        grid-template-columns: 34px 1fr;
+        gap: 12px;
+        align-items: center;
+        padding: 13px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #ffffff;
+        color: #4f625c;
+        font-weight: 700;
+      }
+
+      .route-list span {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border-radius: 999px;
+        color: #ffffff;
+        background: var(--leaf);
+        font-size: 13px;
+      }
+
+      .article-wrap {
+        padding: 78px 0 88px;
+      }
+
+      .learning-roadmap {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 270px;
+        gap: 48px;
+        align-items: start;
+      }
+
+      .article {
+        max-width: 780px;
+      }
+
+      .article section {
+        padding: 34px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .article section:first-child {
+        padding-top: 0;
+      }
+
+      .article section:last-child {
+        border-bottom: 0;
+      }
+
+      .article h2 {
+        margin-bottom: 16px;
+        font-size: clamp(26px, 3.4vw, 38px);
+        line-height: 1.18;
+      }
+
+      .article p {
+        color: #4f625c;
+        font-size: 17px;
+      }
+
+      .article ul {
+        display: grid;
+        gap: 10px;
+        margin: 18px 0 0;
+        padding: 0;
+        color: #4f625c;
+        list-style: none;
+      }
+
+      .article li {
+        display: flex;
+        gap: 10px;
+      }
+
+      .article li::before {
+        content: "✓";
+        color: var(--leaf);
+        font-weight: 850;
+      }
+
+      blockquote {
+        margin: 24px 0;
+        padding: 20px 22px;
+        border: 1px solid #ecd4aa;
+        border-left: 4px solid var(--gold);
+        border-radius: 8px;
+        background: #fffaf0;
+        color: #755221;
+        font-size: 18px;
+        font-weight: 750;
+      }
+
+      .example-box,
+      .flow-box {
+        margin-top: 22px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #ffffff;
+        box-shadow: 0 16px 34px rgba(41, 64, 57, 0.06);
+      }
+
+      .example-box p {
+        margin-bottom: 8px;
+        color: var(--ink);
+        font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+        font-size: 22px;
+      }
+
+      .example-box p:last-child {
+        margin-bottom: 0;
+      }
+
+      .flow-box {
+        color: var(--leaf-dark);
+        font-size: 19px;
+        font-weight: 850;
+        text-align: center;
+      }
+
+      .side-note {
+        position: sticky;
+        top: 104px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #ffffff;
+      }
+
+      .side-note h2 {
+        margin-bottom: 12px;
+        font-size: 20px;
+      }
+
+      .side-note p {
+        margin-bottom: 18px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .side-note a {
+        display: block;
+        margin-top: 10px;
+        color: var(--leaf-dark);
+        font-weight: 800;
+      }
+
+      .site-footer {
+        padding: 28px 0;
+        border-top: 1px solid var(--line);
+        color: #72807b;
+        font-size: 14px;
+      }
+
+      .footer-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      @media (max-width: 920px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero-grid,
+        .learning-roadmap {
+          grid-template-columns: 1fr;
+        }
+
+        .side-note {
+          position: static;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .shell {
+          width: min(100% - 28px, 1120px);
+        }
+
+        .nav {
+          min-height: 64px;
+        }
+
+        .brand span:last-child {
+          max-width: 184px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .hero {
+          padding: 48px 0 34px;
+          background-position: 58% center;
+        }
+
+        .hero-actions {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        .article-wrap {
+          padding: 58px 0 64px;
+        }
+
+        .footer-row {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="shell nav">
+        <a class="brand" href="index.html" aria-label="瓯葉划词日语注音首页">
+          <span class="brand-mark">葉</span>
+          <span>瓯葉划词日语注音</span>
+        </a>
+        <nav class="nav-links" aria-label="主导航">
+          <a href="document.html" aria-current="page">初学者教程</a>
+          <a href="index.html#features">核心功能</a>
+          <a href="sale.html">社群</a>
+          <a href="/privacy">隐私</a>
+        </nav>
+        <a class="button primary" href="index.html#install">下载扩展</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="shell hero-grid">
+          <div>
+            <p class="eyebrow">初学者日语学习路线</p>
+            <h1 id="hero-title">先反复接触，再慢慢变熟</h1>
+            <p class="hero-copy">
+              瓯葉不是一套完整课程，而是帮助你在真实内容中持续接触日语的输入工具。开始使用前，可以先了解从词汇、句子到输出的大致过程。
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#roadmap">阅读路线</a>
+              <a class="button secondary" href="index.html">返回首页</a>
+            </div>
+          </div>
+
+          <aside class="route-card" aria-label="学习路线目录">
+            <h2>学习循环</h2>
+            <ol class="route-list">
+              <li><a href="#vocabulary"><span>1</span>熟悉词汇</a></li>
+              <li><a href="#sentences"><span>2</span>读懂句子</a></li>
+              <li><a href="#shadowing"><span>3</span>跟读模仿</a></li>
+              <li><a href="#output"><span>4</span>简单输出</a></li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+
+      <div id="roadmap" class="article-wrap">
+        <div class="shell learning-roadmap">
+          <article class="article">
+            <section id="memory">
+              <h2>1. 学语言不是一次记住，而是反复刺激</h2>
+              <p>
+                很多人学习日语时都会遇到一种情况：一个单词、一个句子，今天读了很多遍，还是记不住。甚至连续读了好几天，看到的时候依然像第一次见。
+              </p>
+              <p>
+                这是非常正常的现象，并不代表你没有学进去。语言记忆不是在“读完的那一刻”立刻完成的，而是在反复接触、间隔时间和休息中慢慢形成。
+              </p>
+              <p>
+                可以把每一次阅读、查词、跟读，都理解成一次对大脑的刺激。你当下可能感觉不到明显变化，但这些刺激会不断积累。尤其是在休息和睡眠过程中，大脑会对这些信息进行整理和巩固。
+              </p>
+              <blockquote>之前一直记不住的内容，可能会在几天后突然变得熟悉。</blockquote>
+              <p>
+                所以，当你感觉“怎么读都记不住”时，最重要的不是怀疑自己，而是继续一遍又一遍地接触它。
+              </p>
+            </section>
+
+            <section id="vocabulary">
+              <h2>2. 第一阶段：熟悉词汇</h2>
+              <p>
+                初期不需要强求自己一次记住所有单词。更重要的是让常见词不断出现在你眼前，让它们逐渐从“陌生”变成“眼熟”。
+              </p>
+              <ul>
+                <li>看到不会的词，用插件快速查看读音和意思</li>
+                <li>不强求背下来，只要理解当前句子即可</li>
+                <li>同一个词多次出现时，自然会加深印象</li>
+              </ul>
+            </section>
+
+            <section id="sentences">
+              <h2>3. 第二阶段：读懂句子</h2>
+              <p>
+                单词只是材料，真正能使用的是句子。当你开始熟悉一些基础词汇后，就可以把重点放到句子理解上。
+              </p>
+              <ul>
+                <li>从短句、简单句开始阅读</li>
+                <li>边读边理解，不会的地方即时查</li>
+                <li>优先追求“读得顺”和“看得懂”</li>
+              </ul>
+              <div class="example-box">
+                <p>これはペンです。</p>
+                <p>今日はちょっと疲れた。</p>
+                <p>今コーヒーを飲んでいます。</p>
+              </div>
+            </section>
+
+            <section id="shadowing">
+              <h2>4. 第三阶段：跟读与模仿</h2>
+              <p>
+                看懂之后，不要急着自由表达。更好的方式是先模仿已经理解的句子，把它们读顺、读熟。
+              </p>
+              <ul>
+                <li>选择自己已经理解的句子</li>
+                <li>一句话重复读 5～10 次以上</li>
+                <li>模仿发音、节奏和停顿</li>
+              </ul>
+              <p>
+                这个阶段的重点不是创造新句子，而是把输入慢慢转化成可以使用的表达。
+              </p>
+            </section>
+
+            <section id="output">
+              <h2>5. 第四阶段：开始简单输出</h2>
+              <p>
+                当你已经能看懂一些简单句，也能比较顺地读出来时，就可以开始尝试简单表达。
+              </p>
+              <ul>
+                <li>描述现在正在做什么</li>
+                <li>描述身边看到的东西</li>
+                <li>表达简单的感觉和想法</li>
+              </ul>
+              <div class="example-box">
+                <p>今、勉強しています。</p>
+                <p>ちょっと眠いです。</p>
+                <p>今日はいい天気です。</p>
+              </div>
+              <p>
+                一开始说得简单、慢、卡顿，都是正常的。输出能力不是凭空出现的，而是大量输入之后自然长出来的。
+              </p>
+            </section>
+
+            <section id="cycle">
+              <h2>6. 学习是循环，不是直线</h2>
+              <p>
+                日语学习不是“背完单词 → 学完语法 → 开始说话”这么简单。更真实的过程是不断循环：
+              </p>
+              <div class="flow-box">词汇熟悉 → 句子理解 → 跟读模仿 → 简单输出 → 再次接触</div>
+              <p>
+                每一次循环，都会让你对语言更熟悉一点。不需要一次完成，只要持续接触，就会慢慢积累。
+              </p>
+            </section>
+
+            <section id="extension">
+              <h2>7. 插件能帮你做什么</h2>
+              <p>本插件的核心作用，是降低你接触日语内容的成本。</p>
+              <ul>
+                <li>快速查看单词读音和含义</li>
+                <li>减少查词带来的中断感</li>
+                <li>帮助你在真实网页内容中学习日语</li>
+                <li>让你更容易反复遇到同一个词和表达</li>
+              </ul>
+              <blockquote>
+                记不住并不代表没有进步。只要你还在不断接触，语言能力就在慢慢积累。
+              </blockquote>
+            </section>
+          </article>
+
+          <aside class="side-note">
+            <h2>建议使用方式</h2>
+            <p>每天选一小段真实日语网页，不追求一次吃透。先读懂当前句子，再把经常遇到的词慢慢留熟。</p>
+            <a href="index.html#install">下载扩展</a>
+            <a href="sale.html">加入学习社群</a>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-row">
+        <span>© 2026 瓯葉划词日语注音</span>
+        <span>初学者教程：从反复接触开始学习日语</span>
+      </div>
+    </footer>
+  </body>
+</html>
