@@ -2,15 +2,19 @@
 
 这是一个用于给日文网页内容添加假名标注的浏览器插件。
 
-## 下载
+## 获取插件
 
-访问本仓库的用户可以在页面右侧的 **Releases** 区域下载安装包，也可以直接打开：
+推荐通过 Chrome 应用商店安装，后续更新更方便：
 
-[下载最新版本](https://github.com/amehito/japanese-dict-patch/releases/tag/v1)
+[从 Chrome 应用商店获取](https://chromewebstore.google.com/detail/%E6%97%A5%E8%AF%AD%E5%88%92%E8%AF%8D%E6%B3%A8%E9%9F%B3/mojjdkehfhaaeinnbajdbjdeopkeecdg)
+
+如果需要手动安装，也可以在页面右侧的 **Releases** 区域下载安装包，或直接打开：
+
+[下载 GitHub Release 版本](https://github.com/amehito/japanese-dict-patch/releases/tag/v1)
 
 ## 安装教程
 
-请先从 Releases 下载适合自己浏览器的安装包，然后参考对应浏览器的扩展安装教程：
+Chrome 用户建议直接从应用商店安装。如果需要手动安装，请先从 Releases 下载适合自己浏览器的安装包，然后参考对应浏览器的扩展安装教程：
 
 - [Chrome 插件安装教程](https://support.google.com/chrome/answer/2664769?hl=zh-Hans)
 - [Microsoft Edge 插件安装教程](https://support.microsoft.com/zh-cn/microsoft-edge/%E5%9C%A8-microsoft-edge-%E4%B8%AD%E6%B7%BB%E5%8A%A0-%E5%85%B3%E9%97%AD%E6%88%96%E5%88%A0%E9%99%A4%E6%89%A9%E5%B1%95-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026)
